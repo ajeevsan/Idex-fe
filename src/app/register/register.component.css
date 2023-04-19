@@ -1,0 +1,20 @@
+.home{
+    max-width:100%;
+    width:100vw;
+    background-position: center;
+    background-size: cover;
+    position: fixed;
+    background-color:rgb(1, 16, 47);
+    }
+
+
+/*#fh{
+  zoom: 60%;
+}*/
+
+body{
+  zoom: 50%;
+}
+#fh{
+    zoom: 50%;
+    }

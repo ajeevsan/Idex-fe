@@ -1,0 +1,17 @@
+/*#fh{
+  zoom: 50%;
+}
+*/
+body{
+  zoom: 50%;
+}
+
+body {
+    background-color: red;
+    
+  }
+
+  .sidebar {
+    width: 223px;
+    font-size: 12px;
+}

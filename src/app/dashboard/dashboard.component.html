@@ -1,0 +1,297 @@
+<div class="main_container">
+    <div class="header">
+        <div class="menu_container">
+            <button mat-button [matMenuTriggerFor]="menu" style="border-width: 0px; background-color: transparent;">
+               <img src="/assets/menu.png" alt="Menu" id="menu-icon">
+            </button>
+            <mat-menu #menu="matMenu" id="menu_list" style="padding: 5%;">
+              <button mat-menu-item id="dashboard" [routerLink]="['/dashboard']">Dashboard</button>
+              <button mat-menu-item id="detailSection" [routerLink]="['/details']">Details Section</button>
+            </mat-menu>
+          </div>
+        <div class="user_container">
+            <img id="logo" src="./assets/images/Puzzle.png" style="height: 65px; width: auto;" alt="" srcset="">
+            <div class="user_title">Hi, User</div>
+        </div>
+        <div class="heading">Visibility Forecast</div>
+        <div class="date_btn_container">
+            <div class="date_time_content">{{currentDate | date:'dd-MMM-yyyy HH:mm:ss'}} &nbsp;&nbsp;</div>
+        </div>
+    </div>
+    <div class="main_section">
+        <div class=" left_section">
+            <div id="" class="station_container">
+                <div class="station_title">Select Station</div>
+                <select name="station" id="select_station" (change)="stationName($event)">
+                    <!-- <option style="font-family: 'Times New Roman', Times, serif;"
+                        value={{_location.currentStation}}
+                        *ngFor="let city of cityList; let i=index" [value]="currentSelectedCity">
+                        {{cityList[i]}}
+                    </option> -->
+                    <option value="Chandigarh">Chandigarh</option>
+                    <option value="Gorakhpur">Gorakhpur</option>
+                    <option value="Hindan">Hindan</option>
+                    <option value="Srinagar">Srinagar</option>
+                </select>
+            </div>
+            <div id="" class="date_container">
+                <mat-form-field appearance="fill" style="margin-top: 8%;">
+                    <mat-label>Pick a Date</mat-label>
+                    <input matInput [matDatepicker]="picker1" [max] = "today" [formControl]="date">
+                    <mat-datepicker-toggle matIconSuffix [for]="picker1"></mat-datepicker-toggle>
+                    <mat-datepicker #picker1></mat-datepicker>
+                </mat-form-field>
+
+            </div>
+            <div class="forecast_duration">
+                <div class="forecast_title">Forecast Duration</div>
+                <div class="time_interval_container" >
+                    <!-- <div class="duration_6hr" id="6hr">{{hourList[0]}}</div> -->
+                    <div class="duration_6hr" *ngIf="flag_6hr" id="6hr" (click)="forecastHour('6hr')" style="background-image: linear-gradient(-180deg, #37AEE2 0%, #1E96C8 100%);" >6hr</div>
+                    <div class="duration_6hr" id="6hr" *ngIf="!flag_6hr" style="background-image: linear-gradient(-180deg, #295061 0%, #4a839b 100%);" >6hr</div>
+
+                    <!-- <div class="duration_48hr" id="48hr">{{hourList[1]}}</div> -->
+                    <div class="duration_48hr" id="48hr" *ngIf="flag_48hr" (click)="forecastHour('48hr')" style="background-image: linear-gradient(-180deg, #37AEE2 0%, #1E96C8 100%);" >48hr</div>
+                    <div class="duration_48hr"  *ngIf="!flag_48hr" id="48hr" style="background-image: linear-gradient(-180deg, #295061 0%, #4a839b 100%);" >48hr</div>
+                </div>
+            </div>
+            <div id="" class="details_container">
+                <div class="detail_title">Real Time Details</div>
+                <div class="realtimeDetailsList">
+                    <table>
+                        <tr class="noBorder">
+                            <td>DDD</td>
+                            <td>{{DDD}}</td>
+                        </tr>
+                        <tr class="noBorder">
+                            <td>FF</td>
+                            <td>{{FF}}</td>
+                        </tr>
+                        <tr class="noBorder">
+                            <td>FMFM</td>
+                            <td>{{FMFM}}</td>
+                        </tr>
+                        <tr class="noBorder">
+                            <td>DB</td>
+                            <td>{{DB}}</td>
+                        </tr>
+                        <tr class="noBorder">
+                            <td>DP</td>
+                            <td>{{DP}}</td>
+                        </tr>
+                        <tr class="noBorder">
+                            <td>WB</td>
+                            <td>{{WB}}</td>
+                        </tr>
+                        <tr class="noBorder">
+                            <td>RH</td>
+                            <td>{{RH}}</td>
+                        </tr>
+                        <tr class="noBorder">
+                            <td>QFE</td>
+                            <td>{{QFE}}</td>
+                        </tr>
+                        <tr class="noBorder">
+                            <td>QFF</td>
+                            <td>{{QFF}}</td>
+                        </tr>
+                        <tr class="noBorder">
+                            <td>RRR</td>
+                            <td>{{RRR}}</td>
+                        </tr>
+                        <tr class="noBorder">
+                            <td>MinTemp</td>
+                            <td>{{MinTemp}}</td>
+                        </tr>
+                        <tr class="noBorder">
+                            <td>MaxTemp</td>
+                            <td>{{MaxTemp}}</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div class=" right_section">
+            <div class="charts_container">
+                <!-- <div class="forecast_duration">
+                    <div class="forecast_title">Forecast Duration</div>
+                    <div class="time_interval_container"> -->
+                <!-- <div class="duration_6hr" id="6hr">{{hourList[0]}}</div> -->
+                <!-- <div class="duration_6hr" id="6hr">6hr</div> -->
+
+                <!-- <div class="duration_48hr" id="48hr">{{hourList[1]}}</div> -->
+                <!-- <div class="duration_48hr" id="48hr">48hr</div> -->
+                <!-- </div>
+                </div> -->
+                <div class="charts_section">
+                    <div id="actual" class="actualGraph_container">
+                        <div class="actualGraph_title">Predicted and Actual Data for {{stname}}</div>
+                        <hr>
+                        <hr>
+                        <div id="actual_graph">
+                            <div id="pipe" style="height: 300px; margin-top: 10px;" ></div>
+                        </div>
+                    </div>
+                    <div class="detail_error_graph">
+                        <div id="error" class="errorGraph_container">
+                            <div class="errorGraph_title">Error Graph for {{stname}}</div>
+                            <hr>
+                            <hr>
+                            <div id="error_graph">
+                                <div id="errorP" style="height: 260px;"></div>
+                            </div>
+                        </div>
+                        <div class="overall_data_container">
+                            <div class="overall_data_title">Individual Data
+                                <hr>
+                            </div>
+                            <div class="individual_graph">
+                                <div class="mini_graph" id="graph_1">
+                                    <div echarts id="errorA" style="height:250px;margin: 1%;"></div>
+                                    <!-- !...........6hr............ -->
+                                    <!-- <div echarts *ngIf="currentSelectedCity=='Chandigarh' && time_data=='6hr'"  [options]="chandigarh_overall_average_error" style="height:250px;margin: 1%;"></div>
+                                    <div echarts *ngIf="currentSelectedCity=='Srinagar' && time_data=='6hr'"  [options]="srinagar_overall_average_error" style="height:250px;margin: 1%;"></div>
+                                    <div echarts *ngIf="currentSelectedCity=='Gorakhpur' && time_data=='6hr'"  [options]="gorakhpur_overall_average_error" style="height:250px;margin: 1%;"></div>
+                                    <div echarts *ngIf="currentSelectedCity=='Hindan' && time_data=='6hr'"  [options]="hindan_overall_average_error" style="height:250px;margin: 1%;"></div> -->
+                                    <!-- !...........48hr............ -->
+                                    <!-- <div echarts *ngIf="currentSelectedCity=='Chandigarh' && time_data=='48hr'"  [options]="chandigarh_overall_average_error_48hr" style="height:250px;margin: 1%;"></div>
+                                    <div echarts *ngIf="currentSelectedCity=='Srinagar' && time_data=='48hr'"  [options]="srinagar_overall_average_error_48hr" style="height:250px;margin: 1%;"></div>
+                                    <div echarts *ngIf="currentSelectedCity=='Gorakhpur' && time_data=='48hr'"  [options]="gorakhpur_overall_average_error_48hr" style="height:250px;margin: 1%;"></div>
+                                    <div echarts *ngIf="currentSelectedCity=='Hindan' && time_data=='48hr'"  [options]="hindan_overall_average_error_48hr" style="height:250px;margin: 1%;"></div> -->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- <div class="overall_data_container">
+            <div class="overall_data_title">DATA OVERVIEW
+                    <hr>
+                    <hr>
+                </div>
+                <div class="table_container">
+                    <table>
+                        <thead>
+                            <tr style="background-color: rgb(5, 55, 137); color: white;">
+                                <th style="font-size:120%; font-family: 'Times New Roman'; text-align: center;"
+                                    class="background">Time</th>
+                                <th style="font-size:120%; font-family: 'Times New Roman'; text-align: center;"
+                                    class="background">Prediction<br> (in mts)</th>
+                                <th style="font-size:120%; font-family: 'Times New Roman'; text-align: center;"
+                                    class="background">Actual<br>(in mts)</th>
+                                <th style="font-size:120%; font-family: 'Times New Roman'; text-align: center;"
+                                    class="background">Error<br>(in mts)</th>
+                            </tr>
+                        </thead>
+
+                        <tbody> -->
+            <!-- <tr *ngFor="let h of hLast; index as i "
+                                style="color: black; background-color: white; font-size:20px;font-family:'Times New Roman', Times, serif;text-align: center;">
+                                <td><span>{{hLast[i]}}</span></td>
+                                <td><span>{{pLast[i]}}</span></td>
+                                <td><span>{{aLast[i]}}</span></td>
+                                <td><span>{{eLast[i]}}</span></td>
+                            </tr> -->
+
+            <!-- <tr
+                                style="color: black; background-color: white; font-size:20px;font-family:'Times New Roman', Times, serif;text-align: center;">
+                                <td>12:00</td>
+                                <td>1000</td>
+                                <td>980</td>
+                                <td>20</td>
+                            </tr>
+                            <tr
+                                style="color: black; background-color: white; font-size:20px;font-family:'Times New Roman', Times, serif;text-align: center;">
+                                <td>13:00</td>
+                                <td>1000</td>
+                                <td>950</td>
+                                <td>50</td>
+                            </tr>
+                            <tr
+                                style="color: black; background-color: white; font-size:20px;font-family:'Times New Roman', Times, serif;text-align: center;">
+                                <td>14:00</td>
+                                <td>1000</td>
+                                <td>931</td>
+                                <td>69</td>
+                            </tr>
+                            <tr
+                                style="color: black; background-color: white; font-size:20px;font-family:'Times New Roman', Times, serif;text-align: center;">
+                                <td>15:00</td>
+                                <td>900</td>
+                                <td>864</td>
+                                <td>36</td>
+                            </tr>
+                            <tr
+                                style="color: black; background-color: white; font-size:20px;font-family:'Times New Roman', Times, serif;text-align: center;">
+                                <td>16:00</td>
+                                <td>800</td>
+                                <td>781</td>
+                                <td>19</td>
+                            </tr>
+                            <tr
+                                style="color: black; background-color: white; font-size:20px;font-family:'Times New Roman', Times, serif;text-align: center;">
+                                <td>17:00</td>
+                                <td>800</td>
+                                <td>764</td>
+                                <td>36</td>
+                            </tr>
+                            <tr
+                                style="color: black; background-color: white; font-size:20px;font-family:'Times New Roman', Times, serif;text-align: center;">
+                                <td>18:00</td>
+                                <td>800</td>
+                                <td>785</td>
+                                <td>15</td>
+                            </tr>
+                            <tr
+                                style="color: black; background-color: white; font-size:20px;font-family:'Times New Roman', Times, serif;text-align: center;">
+                                <td>19:00</td>
+                                <td>920</td>
+                                <td>795</td>
+                                <td>125</td>
+                            </tr>
+                            <tr
+                                style="color: black; background-color: white; font-size:20px;font-family:'Times New Roman', Times, serif;text-align: center;">
+                                <td>20:00</td>
+                                <td>1000</td>
+                                <td>840</td>
+                                <td>160</td>
+                            </tr>
+                            <tr
+                                style="color: black; background-color: white; font-size:20px;font-family:'Times New Roman', Times, serif;text-align: center;">
+                                <td>21:00</td>
+                                <td>980</td>
+                                <td>895</td>
+                                <td>85</td>
+                            </tr>
+                            <tr
+                                style="color: black; background-color: white; font-size:20px;font-family:'Times New Roman', Times, serif;text-align: center;">
+                                <td>22:00</td>
+                                <td>1000</td>
+                                <td>940</td>
+                                <td>    60</td>
+                            </tr>
+                            <tr
+                                style="color: black; background-color: white; font-size:20px;font-family:'Times New Roman', Times, serif;text-align: center;">
+                                <td>23:00</td>
+                                <td>1100</td>
+                                <td>934</td>
+                                <td>166</td>
+                            </tr>
+                            <tr
+                                style="color: black; background-color: white; font-size:20px;font-family:'Times New Roman', Times, serif;text-align: center;">
+                                <td>24:00</td>
+                                <td>1029</td>
+                                <td>900</td>
+                                <td>129</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div> 
+                <div class="download_btn_container">
+                    <button class="download_btn" (click)="exportexcel()">DOWNLOAD</button>
+                </div>
+            </div>
+        </div>-->
+        </div>
+    </div>

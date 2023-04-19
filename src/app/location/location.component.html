@@ -1,0 +1,179 @@
+<body>
+    <div id="main_container">
+        <div class="map_container">
+            <div class="left_section">
+                <div class="logo_container">
+                    <img src="/assets/Logo.png" alt="" srcset="">
+                </div>
+                <div class="detail_container ">
+                    <div class="typing-slider">
+                        <p>VISIBILITY FORECASTING</p>
+                        <p>VISIBILITY FORECASTING</p>
+                        <p>VISIBILITY FORECASTING</p>
+                        <!-- <div class="project_title ">VISIBILITY FORECASTING</div> -->
+                    </div>
+                    <hr>
+                    <div class="details">
+                        <div class="title_name">Air-Force Stations</div>
+                        <ul class="station_list">
+                            <li id="Chandigarh" >Chandigarh</li>
+                            <li id="Gorakhpur" >Gorakhpur</li>
+                            <li id="Hindan" >Hindan</li>
+                            <li id="Srinagar" >Srinagar</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <!-- !currently in use  -->
+            <div class="Gorakhpur" value='Gorakhpur'(click)="onlyOnceLocation($event)">
+                <div class="active_air_base" id="gorakhpur_container">
+                    <div class="base_circle"  id="gorakhpur_base"></div>
+                </div>
+                <div class="title " id="title_gorakhpur">Gorakhpur</div>
+            </div>
+            <!-- !currently in use  -->
+            <div class="Srinagar" value='Srinagar' (click)="onlyOnceLocation($event)">
+                    <div class="active_air_base" id="srinagar_container">
+                        <div class="base_circle"  id="srinagar_base"></div>
+                    </div>
+                    <div class="title" id="title_srinagar" >Srinagar</div>
+            </div>
+            <!-- !currently in use  -->
+            <div class="Chandigarh" value='Chandigarh' (click)="onlyOnceLocation($event)">
+                    <div class="active_air_base" id="chandigarh_container">
+                        <div class="base_circle"  id="chandigarh_base"></div>
+                    </div>
+                    <div class="title" id="title_chandigarh">Chandigarh</div>
+            </div>
+            <!-- !currently in use  -->
+            <div class="Hindan" value='Hindan' (click)="onlyOnceLocation($event)">
+                    <div class="active_air_base" id="hindan_container">
+                        <div class="base_circle" id="hindan_base"></div>
+                    </div>
+                    <div class="title" id="title_hindan">Hindan</div>
+            </div>
+
+
+
+            <!--! Un-allocated station  -->
+            <div class="leh_base">
+                <div class="inactive_air_base" id="leh_AFS">
+                    <img src="/assets/location_pin.png" alt="" title="Leh AFS" >
+                </div>
+            </div>
+            <div class="nicobar_base">
+                <div class="inactive_air_base" id="nicobar_AFS">
+                    <img src="/assets/location_pin.png" alt="" title="Car Nicobar AFS" >
+                </div>
+            </div>
+            <div class="portblair_base">
+                <div class="inactive_air_base" id="portblair_AFS">
+                    <img src="/assets/location_pin.png" alt="" title="Portblair AFS" >
+                </div>
+            </div>
+            <div class="trivandrum_base">
+                <div class="inactive_air_base" id="trivandrum_AFS">
+                    <img src="/assets/location_pin.png" alt="" title="Trivandrum AFS" >
+                </div>
+            </div>
+            <div class="thanjavur_base">
+                <div class="inactive_air_base" id="thanjavur_AFS">
+                    <img src="/assets/location_pin.png" alt="" title="Thanjavur AFS" >
+                </div>
+            </div>
+            <div class="sulur_base">
+                <div class="inactive_air_base" id="sulur_AFS">
+                    <img src="/assets/location_pin.png" alt="" title="Sulur AFS" >
+                </div>
+            </div>
+            <div class="tambram_base">
+                <div class="inactive_air_base" id="tambram_AFS">
+                    <img src="/assets/location_pin.png" alt="" title="Tambram AFS" >
+                </div>
+            </div>
+            <div class="yelahanka_base">
+                <div class="inactive_air_base" id="yelahanka_AFS">
+                    <img src="/assets/location_pin.png" alt="" title="Yelahanka AFS" >
+                </div>
+            </div>
+            <div class="lohegaon_base">
+                <div class="inactive_air_base" id="lohegaon_AFS">
+                    <img src="/assets/location_pin.png" alt="" title="Lohegaon AFS" >
+                </div>
+            </div>
+            <div class="jamnagar_base">
+                <div class="inactive_air_base" id="jamnagar_AFS">
+                    <img src="/assets/location_pin.png" alt="" title="Jamnagar AFS" >
+                </div>
+            </div>
+            <div class="nagpur_base">
+                <div class="inactive_air_base" id="nagpur_AFS">
+                    <img src="/assets/location_pin.png" alt="" title="Nagpur AFS" >
+                </div>
+            </div>
+            <div class="kalaikunda_base">
+                <div class="inactive_air_base" id="kalaikunda_AFS">
+                    <img src="/assets/location_pin.png" alt="" title="Kalaikunda AFS" >
+                </div>
+            </div>
+            <div class="bidar_base">
+                <div class="inactive_air_base" id="bidar_AFS">
+                    <img src="/assets/location_pin.png" alt="" title="Bidar AFS" >
+                </div>
+            </div>
+            <div class="chabua_base">
+                <div class="inactive_air_base" id="chabua_AFS">
+                    <img src="/assets/location_pin.png" alt="" title="Chabua AFS" >
+                </div>
+            </div>
+            <div class="kumbhigram_base">
+                <div class="inactive_air_base" id="kumbhigram_AFS">
+                    <img src="/assets/location_pin.png" alt="" title="Kumbhigram AFS" >
+                </div>
+            </div>
+            <div class="tawang_base">
+                <div class="inactive_air_base" id="tawang_AFS">
+                    <img src="/assets/location_pin.png" alt="" title="Tawang AFS" >
+                </div>
+            </div>
+            <div class="bagdodra_base">
+                <div class="inactive_air_base" id="bagdodra_AFS">
+                    <img src="/assets/location_pin.png" alt="" title="Bagdodra AFS" >
+                </div>
+            </div>
+            <div class="darbhanga_base">
+                <div class="inactive_air_base" id="darbhanga_AFS">
+                    <img src="/assets/location_pin.png" alt="" title="Darbhanga AFS" >
+                </div>
+            </div>
+            <div class="maharajpur_base">
+                <div class="inactive_air_base" id="maharajpur_AFS">
+                    <img src="/assets/location_pin.png" alt="" title="Maharajpur AFS" >
+                </div>
+            </div>
+            <div class="amritsar_base">
+                <div class="inactive_air_base" id="amritsar_AFS">
+                    <img src="/assets/location_pin.png" alt="" title="Amritsar AFS" >
+                </div>
+            </div>
+            <div class="nal_bikaner_base">
+                <div class="inactive_air_base" id="nal_bikaner_AFS">
+                    <img src="/assets/location_pin.png" alt="" title="Nal-Bikaner AFS" >
+                </div>
+            </div>
+            <div class="uttarlai_base">
+                <div class="inactive_air_base" id="uttarlai_AFS">
+                    <img src="/assets/location_pin.png" alt="" title="Uttarlai AFS" >
+                </div>
+            </div>
+            <div class="bareilly_base">
+                <div class="inactive_air_base" id="bareilly_AFS">
+                    <img src="/assets/location_pin.png" alt="" title="Bareilly AFS" >
+                </div>
+            </div>
+            <div class="compass_container">
+                <img src="/assets/compass.png" alt="compass" >
+            </div>
+        </div>
+    </div>
+</body>

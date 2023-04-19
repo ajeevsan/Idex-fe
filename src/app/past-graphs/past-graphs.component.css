@@ -1,0 +1,215 @@
+
+/* *{
+  margin:0;
+  padding: 0;
+} */
+
+/* 
+body {
+  background-color: red;  
+  
+} */
+
+/*
+#fh{
+  zoom: 50%;
+}*/
+body{
+  zoom: 50%;
+}
+table {
+  font-size:225%;
+  font-family: 'Times New Roman', Times, serif;
+  border-collapse: collapse;
+  width:100%;
+}
+
+td, th {
+  border: 1px solid #dddddd;
+  text-align: center;
+  padding: 8px;
+}
+
+/* td:hover {
+  color: greenyellow;
+} */
+
+.logout:hover {
+  color: blue;
+}
+
+.pastGraphs:hover {
+  color: rgb(0, 149, 255);
+}
+
+.background {
+  width: 100px;
+  height: 50px;
+  padding: 0;
+  margin: 0;
+  color:white;
+}
+
+.line {
+  width: 105%;
+  height: 118%;
+  border-bottom: 2px solid white;
+  transform: translateY(-33px) translateX(3px) rotate(14deg);
+  position: absolute;
+  z-index: 1;
+}
+
+.background>div {
+  /* position: relative; */
+  height: 100%;
+  width: 100%;
+  top: 0;
+  left: 0;
+}
+
+.bottom {
+  position: absolute;
+  bottom: 1px;
+  left: 1px;
+}
+
+.top {
+  position: absolute;
+  top: 1px;
+  right: 1px;
+}
+
+#container {
+  height: 700px;
+  min-width: 320px;
+  max-width: 200px;
+  margin: 0 auto;
+}
+
+.home{
+max-width:100%;
+width:100vw;
+background-position: center;
+background-size: cover;
+position: fixed;
+background-color:rgb(1, 16, 47);
+}
+/* .tableFixHead
+{ overflow: auto; height: 200px; margin-right: 10%;}
+table  { border-collapse: collapse; width: 30%; }
+th, td { padding: 8px 16px; }
+th     { background:#eee; }  */
+
+::ng-deep .mat-focused .mat-form-field-label {
+/*change color of label*/
+color:rgb(5, 55, 137)!important;
+font-family: 'Times New Roman', Times, serif;
+font-size: 40px;
+}
+
+::ng-deep.placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+  color:rgb(5, 55, 137);
+  opacity: 1; /* Firefox */
+  
+}
+::ng-deep.mat-form-field-underline {
+/*change color of underline*/
+background-color: rgb(19, 0, 70) !important;
+
+} 
+
+::ng-deep.mat-form-field-ripple {
+/*change color of underline when focused*/
+background-color: rgb(19, 0, 70) !important;
+
+}
+
+::ng-deep .mat-form-field-label {
+/*change color of label*/
+color: rgb(19, 0, 70)!important;
+font-family: 'Times New Roman', Times, serif;
+
+}
+
+mat-datepicker-toggle {
+color: rgb(19, 0, 70)!important;
+}
+
+.mat-form-body {
+font-size: 60px;
+font-weight: bold;
+width: 300px; 
+height: 50px; 
+border-width: 2px; 
+border-color: rgb(19, 0, 70); 
+font-size: 30px;
+font-family: 'Times New Roman', Times, serif;
+
+}
+
+
+.table-wrapper{
+  overflow-y: scroll;
+  height: 95%;
+  margin-top: 3%;
+}
+::-webkit-scrollbar {
+  width: 0px;
+  background: transparent;  /*make scrollbar transparent*/
+}
+
+.table-wrapper th{
+    position: sticky;
+    top: 0;
+    background-color: rgb(5, 55, 137);
+}
+
+.topnav {
+  overflow: hidden;
+  background-color: #333;
+}
+
+/* .topnav a {
+
+  color: #f2f2f2;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  font-size: 17px;
+} */
+
+
+
+.sidebar {
+  margin: 0;
+  padding: 0;
+  width: 14vw;
+  background-color: white;
+  position: fixed;
+  height: 89vh;
+  /*overflow: auto;*/
+}
+
+.sidebar a {
+  display: block;
+  color: black;
+  padding: 16px;
+  text-decoration: none;
+}
+ 
+.sidebar a.active {
+  background-color: #04AA6D;
+  color: white;
+}
+
+.sidebar a:hover:not(.active) {
+  background-color: #555;
+  color: white;
+}
+.highcharts-button-symbol {
+  display: none
+}
+
+.highcharts-contextbutton text {
+  font-family: 'Glyphicons Halflings';
+}

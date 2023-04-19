@@ -1,0 +1,66 @@
+#fh{
+  zoom: 50%;
+}
+
+/*#fh{
+  zoom: 60%;
+}*/
+
+body{
+  zoom: 50%;
+}
+.logout:hover {
+  color: blue;
+}
+.home{
+  /* max-width:100%;
+  width:100vw;
+  background-position: center;
+  background-size: cover;
+  position: fixed; */
+  background-color:rgb(1, 16, 47);
+  height: 100%;
+  width: 100%;
+  }
+
+.sidebar {
+    margin: 0;
+    padding: 0;
+    width: 350px;
+    background-color:white;
+    position: fixed;
+    height: 100%;
+    overflow: auto;
+  }
+  
+  .sidebar a {
+    display: block;
+    color: black;
+    padding: 16px;
+    text-decoration: none;
+  }
+   
+  .sidebar a.active {
+    background-color: #04AA6D;
+    color: white;
+  }
+  
+  .sidebar a:hover:not(.active) {
+    background-color: #555;
+    color: white;
+  }
+
+
+  
+table {
+  border-collapse: collapse;
+  width:100%;
+  background-color:rgb(1, 16, 47);
+  color: white;
+}
+
+td, th {
+  border: 1px solid #dddddd;
+  text-align: center;
+  padding: 8px;
+}

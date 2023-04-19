@@ -1,0 +1,265 @@
+
+
+<html>
+  
+<!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"> -->
+<link rel="stylesheet" src="src\assets\fonts\font_awesome.css">
+
+<head>
+<meta name="viewport" content="with=device-width, initial-scale=1.0">
+</head>
+
+<body >
+<section class="home"> 
+    <div style="padding: 2vw; background-color: black">
+      <a class="text-white" style="float:left; font-size:3vh; "><a style="font-family: 'Times New Roman', Times, serif"> Hi! User</a> </a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  
+      <a class="text-white" style="text-align: center; font-size: 4vh; font-family: 'Times New Roman', Times, serif;">Visibility Forecasting</a> 
+      <a class="text-white" style="float:right;font-size: 3vh; margin-bottom: 1%; font-family: 'Times New Roman', Times, serif;">{{currentDate | date:'dd-MMM-yyyy HH:mm:ss'}} &nbsp;&nbsp; <a class="logout"  style=" cursor: pointer;color: white; font-family: 'Times New Roman', Times, serif;" (click)="logout()">Logout</a></a>
+    </div>
+
+    <div class="sidebar">
+        <div class="text-white">
+
+          <a class="pastGraphs"  style="margin-top: 0vw; cursor: pointer;color:  rgb(5, 55, 137); font-family: 'Times New Roman', Times, serif;  margin-left: 0vw; font-size: 3vh;" (click)="pastGraphs()">Past graphs</a>
+
+            <div style = "position:relative; height: 5vh; font-size: 3vh;margin-top:1vw;  ">
+                <form>
+                  
+                  <div style=" margin-left: 0.5vw;font-family: 'Times New Roman', Times, serif; color: rgb(5, 55, 137);margin-top: 2vh;"> Select Station: </div><br>
+
+                  <div style=" margin-left: 0.5vw;">
+                    <select style="width: 12vw; height: 1.8vw; border-width: 2px; border-color: rgb(19, 0, 70); font-family: 'Times New Roman', Times, serif;" id="CitySelect" name="CitySelect" (change)="stationName($event)">
+                        <!-- <option disabled selected>Select City</option> -->
+                        <option style="font-family: 'Times New Roman', Times, serif;" *ngFor="let city of cityList; let i=index" [value]="city">
+                          {{cityList[i]}}
+                        </option>
+                    </select>
+                  </div><br>
+
+                  <div style=" margin-left: 0.5vw; margin-top:0.5vh; font-family: 'Times New Roman', Times, serif; color:rgb(5, 55, 137);">Select Forecast hours: </div><br>
+
+                  <div style=" margin-left: 0.5vw;">
+                    <select   style="width: 12vw; height: 1.8vw; border-width: 2px; border-color: rgb(19, 0, 70);font-family: 'Times New Roman', Times, serif;" name="Forecast hours" id="hours" (change)="forecastHour($event)">
+                        <option style="font-family: 'Times New Roman', Times, serif;" *ngFor="let hour of hourList; let i=index" [value]="hour">
+                          {{hourList[i]}}
+                        </option>
+                    </select>
+                  </div>
+                <br>
+                
+            </form>
+        </div>
+
+
+        <div style="margin-top:-2vh; height: 60vh;">
+          <div class="row "  style="margin-top: 13vh; font-size:3.2vh; font-family: 'Times New Roman', Times, serif; color:rgb(5, 55, 137); margin-left:0.5vw;">  Real time features</div><br/>
+          <div class="row "><span style="margin-top:1vh; font-size: 2.2vh;color:rgb(5, 55, 137); font-family: 'Times New Roman', Times, serif; margin-left: 0.5vw;">Station Name : {{stname}}</span></div><br/>
+          
+          
+          
+
+          
+          <div class="row"  style="margin-top: 0.5vh; width: 14.5vw;">                      
+            <a data-toggle="tooltip" title="Surface Wind Direction (in degree)">
+              <div class="row">     
+                <div class="col p-6"><span style="font-family: 'Times New Roman', Times, serif; font-size: 2.5vh;margin-left: 0.5vw;">DDD</span></div>
+                <div class="col p-6" style="font-family: 'Times New Roman', Times, serif; margin-left: 30px; font-size: 2.5vh;">{{DDD}}</div>
+              </div>
+            </a>             
+          </div>
+
+          <div class="row"  style="margin-top: 0.5vh; width: 14.5vw;">                      
+              <a data-toggle="tooltip" title="Mean Surface Wind Speed (in knot)">
+                <div class="row">     
+                  <div class="col p-6"><span style="font-family: 'Times New Roman', Times, serif;font-size: 2.5vh;margin-left: 0.5vw;">FF</span></div>
+                  <div class="col p-6" style="font-family: 'Times New Roman', Times, serif;margin-left: 30px; font-size: 2.5vh;">{{FF}}</div>
+                </div>
+              </a>             
+          </div>
+
+
+
+          <div class="row" style="margin-top: 0.5vh; width: 14.5vw;">                      
+              <a data-toggle="tooltip" title="Maximum Surface Wind Speed (in knot)">
+                <div class="row">     
+                  <div class="col p-6"><span style="font-family: 'Times New Roman', Times, serif;font-size: 2.5vh;margin-left: 0.5vw;">FMFM</span></div>
+                  <div class="col p-6" style="font-family: 'Times New Roman', Times, serif;margin-left: 30px; font-size: 2.5vh;">{{FMFM}}</div>
+                </div>
+              </a>             
+          </div>
+
+          <div class="row"  style="margin-top: 0.5vh; width: 14.5vw;">                      
+              <a data-toggle="tooltip" title="Dry Bulb Temperature (°C)">
+                <div class="row">     
+                  <div class="col p-6"><span style="font-family: 'Times New Roman', Times, serif;font-size: 2.5vh;margin-left: 0.5vw;">DB</span></div>
+                  <div class="col p-6" style="font-family: 'Times New Roman', Times, serif;margin-left: 30px; font-size: 2.5vh;">{{DB}}</div>
+                </div>
+              </a>             
+          </div>
+
+          <div class="row"  style="margin-top: 0.5vh; width: 14.5vw;">                      
+              <a data-toggle="tooltip" title="Dew Point Temperature (°C)">
+                <div class="row">     
+                  <div class="col p-6"><span style="font-family: 'Times New Roman', Times, serif;font-size: 2.5vh;margin-left: 0.5vw;">DP</span></div>
+                  <div class="col p-6" style="font-family: 'Times New Roman', Times, serif;margin-left: 30px; font-size: 2.5vh;">{{DP}}</div>
+                </div>
+              </a>             
+          </div>
+
+          <div class="row" style="margin-top: 0.5vh; width: 14.5vw;">                      
+              <a data-toggle="tooltip" title="Wet Bulb Temperature (°C)">
+                <div class="row">     
+                  <div class="col p-6"><span style="font-family: 'Times New Roman', Times, serif;font-size: 2.5vh;margin-left: 0.5vw;">WB</span></div>
+                  <div class="col p-6" style="font-family: 'Times New Roman', Times, serif;margin-left: 30px; font-size: 2.5vh;">{{WB}}</div>
+                </div>
+              </a>             
+          </div>
+
+          <div class="row"  style="margin-top: 0.5vh; width: 14.5vw;">                      
+              <a data-toggle="tooltip" title="Relative Humidity (%)">
+                <div class="row">     
+                  <div class="col p-6"><span style="font-family: 'Times New Roman', Times, serif;font-size: 2.5vh;margin-left: 0.5vw;">RH</span></div>
+                  <div class="col p-6" style="font-family: 'Times New Roman', Times, serif;margin-left: 30px; font-size: 2.5vh;">{{RH}}</div>
+                </div>
+              </a>             
+          </div>
+
+          <div class="row"  style="margin-top: 0.5vh; width: 14.5vw;">                      
+              <a data-toggle="tooltip" 
+              title="Pressure value wrt the airfield reference point (in hPa)">
+                <div class="row">     
+                  <div class="col p-6"><span style="font-family: 'Times New Roman', Times, serif;font-size: 2.5vh;margin-left: 0.5vw;">QFE</span></div>
+                  <div class="col p-6" style="font-family: 'Times New Roman', Times, serif;margin-left: 30px; font-size: 2.5vh;">{{QFE}}</div>
+                </div>
+              </a>             
+          </div>
+
+          <div class="row"  style="margin-top: 0.5vh; width: 14.5vw;">                      
+              <a data-toggle="tooltip" title="Pressure value reduced to mean sea level according to standard meteorological practice (in hPa)">
+                <div class="row">     
+                  <div class="col p-6"><span style="font-family: 'Times New Roman', Times, serif;font-size: 2.5vh;margin-left: 0.5vw;">QFF</span></div>
+                  <div class="col p-6" style="font-family: 'Times New Roman', Times, serif;margin-left: 30px;font-size: 2.5vh;">{{QFF}}</div>
+                </div>
+              </a>             
+          </div>
+
+          <div class="row"  style="margin-top: 0.5vh; width: 14.5vw;">                      
+              <a data-toggle="tooltip" title="Rainfall in mm">
+                <div class="row">     
+                  <div class="col p-6"><span style="font-family: 'Times New Roman', Times, serif;font-size: 2.5vh;margin-left: 0.5vw;">RRR</span></div>
+                  <div class="col p-6" style="font-family: 'Times New Roman', Times, serif;margin-left: 30px; font-size: 2.5vh;">{{RRR}}</div>
+                </div>
+              </a>             
+          </div>
+
+          <div class="row"  style="margin-top: 0.5vh; width: 14.5vw;">                      
+              <a data-toggle="tooltip" title="Minimum Temperature at 08:30 Hr (°C)">
+                <div class="row">     
+                  <div class="col p-6"><span style="font-family: 'Times New Roman', Times, serif;font-size: 2.5vh;margin-left: 0.5vw;">MinTemp</span></div>
+                  <div class="col p-6" style="font-family: 'Times New Roman', Times, serif; margin-left: 30px; font-size: 2.5vh;">{{MinTemp}}</div>
+                </div>
+              </a>             
+          </div>
+
+          <div class="row"  style="margin-top: 0.5vh; width: 14.5vw;">                      
+              <a data-toggle="tooltip" title="Maximum Temperature at 1730 Hr (°C)">
+                <div class="row">     
+                  <div class="col p-6"><span style="font-family: 'Times New Roman', Times, serif;font-size: 2.5vh;margin-left: 0.5vw;">MaxTemp</span></div>
+                  <div class="col p-6" style="font-family: 'Times New Roman', Times, serif;margin-left: 25px; font-size: 2.5vh;">{{MaxTemp}}</div>
+                </div>
+              </a>             
+          </div>
+        </div> 
+        </div> 
+</div>
+
+<div class="layer" style="margin-left:14vw; height:89vh; width:58vw" >
+        
+      <div class="container-fluid" style="margin-top:-1.9vh; margin-left: 0%;height: 89vh;width: 58vw;">
+          <br>
+          <div>
+                
+            <div class="col p-3 text-light" style="margin-top: -1.9vh; margin-left: 0%; height: 90vh; width: 57vw;" >
+                <!-- <script src="http://code.highcharts.com/highcharts.js"></script> -->
+                <script src = "src\assets\charts\highcharts.js"></script>
+                <!-- <script src="https://code.highcharts.com/stock/highstock.js"></script> -->
+                <script src="src\assets\charts\highstock.js"></script>
+                <!-- <script src="https://code.highcharts.com/stock/modules/exporting.js"></script> -->
+                <script src="src\assets\charts\stock_modules_exporting.js"></script>
+                <!-- <script src="https://code.highcharts.com/stock/modules/accessibility.js"></script> -->
+                <script src="src\assets\charts\stock_modules_accessibility.js"></script>
+                <!-- <script src="http://code.highcharts.com/modules/exporting.js"></script> -->
+                <script src="src\assets\charts\modules_exporting.js"> </script>
+                <!-- <script src="https://code.highcharts.com/modules/offline-exporting.js"></script>   -->
+                <script src="src\assets\charts\modules_offline_exporting.js"></script>
+                <!-- <script src="https://code.highcharts.com/modules/exporting.js"></script> -->
+                <script src="src\assets\charts\https_modules_exporting.js"></script>
+                <!-- <script src="https://code.highcharts.com/modules/accessibility.js"></script> -->
+                <script src="src\assets\charts\modules_accessibility.js"></script>
+                <!-- <script src="https://code.highcharts.com/modules/export-data.js"></script> -->
+                <script src="src\assets\charts\modules_export_data.js"></script>
+
+                <div class="row" style="height:53vh; width:57vw; " >
+                  <div id="chart1" style=" overflow:hidden; height:53vh; width:57vw;" ></div>
+                </div><br/>
+              
+                <div class="row" style="margin-top:0%; height:34vh; width:57vw; ">
+                  <div id="chart2" style="  overflow:hidden; height:34vh; width:57vw;" ></div>
+                </div>
+  
+            </div> 
+    
+  
+            
+            
+            <div class="col p-3 text-white" style="overflow: auto; width:29.5vw; margin-top: -90vh; margin-left:57vw; height:90vh; ">
+
+              <!-- <div  style="font-family: 'Times New Roman', Times, serif; color: white; font-size:30px; margin-top: 0.5%; ">Date: {{td_formatted}}</div>  -->
+              <div class="table-wrapper" >
+              <table  style=" width:97%;margin-right:0px; margin-left: 0px;"  id="excel-table">   
+                  <thead  class="disable-scrollbars">
+                        <tr style="background-color: rgb(5, 55, 137); ">
+                          <th style="font-size:25px;font-family: 'Times New Roman';width:150px; text-align: center;" class="background">Time</th>
+                          <th style="font-size:25px;font-family: 'Times New Roman';width:150px; text-align: center;" class="background">Prediction<br> (in meters)</th>
+                          <th style="font-size:25px;font-family: 'Times New Roman';width:150px; text-align: center;" class="background">Actual<br>(in meters)</th>
+                          <th style="font-size:25px;font-family: 'Times New Roman';width:150px; text-align: center;" class="background">Error<br>(in percentage)</th>
+                        </tr>
+                      </thead>
+              
+                      <tbody  >
+                        <tr *ngFor="let h of hLast; index as i "  style="color: black; background-color: white; font-size:23px;font-family:'Times New Roman', Times, serif;text-align: center;">
+                          <td><span>{{hLast[i]}}</span></td>
+                          <td><span>{{pLast[i]}}</span></td>
+                          <td><span>{{aLast[i]}}</span></td>
+                          <td><span>{{eLast[i]}}</span></td>
+                        </tr>
+                      </tbody>
+                </table>
+              </div>
+              <div class="wthree-field" style="position: sticky; bottom: 0; margin-left: 0%; margin-top: -0.3%;" >
+                <button type="submit" class="btn" style ="cursor: pointer; width: 27.5vw; background-color: rgb(5, 55, 137);" (click)="exportexcel()">Download to csv</button>
+              </div> 
+            </div>
+           
+  
+          </div>
+    
+        </div>
+        
+      </div>
+      
+    </section>
+  </body>
+  </html>
+    
+  
+  
+  
+
+
+
+
+
+
+
+

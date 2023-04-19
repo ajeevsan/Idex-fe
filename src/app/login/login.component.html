@@ -1,0 +1,54 @@
+<!-- rgb(1, 16, 47); -->
+
+
+<head>
+<meta name="viewport" content="with=device--width, initial-scale=1.0">
+</head>
+
+
+<section class="main" style="background-color:rgb(1, 16, 47)">
+    <!-- <body background="grey"></body> -->
+    <div class="layer" style="background-color: rgb(1, 16, 47);">
+      <!-- <div class="content-w3ls" style="background-color: aliceblue; width: 80%;"> -->
+            
+              <h1 style="margin-left: 0vw; text-align: center;margin-top: 10vh;  font-size:500%;font-family: 'Times New Roman', Times, serif; color: white;">VISIBILITY FORECASTING</h1>
+
+              <h6 style="margin-left: 0%; text-align: center;margin-top: 5%;  font-size:500%;font-family: 'Times New Roman', Times, serif; color: white;">Login</h6>
+              <img src="../../assets/user.png" style="margin-top: 2vh; margin-left: 44vw; height: 24vh; width:12vw">
+              <!-- <img src="src/assets/images/image1.jpg"> -->
+
+              <div class="content-bottom" style="width: 20%; margin-left: 40%;" >
+                <form> 
+                    <span *ngIf="!credFlag"  style="color: red;font-size: 20px;"> Invalid username or password <meta http-equiv="refresh" content="1"></span>
+                    
+
+                      <div class="field-group" style="margin-bottom: 0px;margin-top: 15px;">
+                          <span class="fa fa-user text-black"></span>
+                          <div class="wthree-field">
+                              <input  name="txtUsrName"  id="txtUsrName" type="text" value="" style="margin-top: 5px; font-size: 15pt;" placeholder="Username" required>
+                          </div>    
+                      </div>
+                      <span *ngIf="emptyUsr"  style="color: red; font-size: 20pt; margin-top: 0px;">User name is required <meta http-equiv="refresh" content="1"></span>
+
+                      <div class="field-group" style="margin-top: 20px;margin-bottom: 0px;">
+                          <span class="fa fa-lock text-black"></span>
+                          <div class="wthree-field">
+                              <input name="txtPwd" id="txtPwd" type="Password" style="margin-top: 5px; font-size: 15pt;" placeholder="Password">
+                          </div>
+                      </div>
+                      <span *ngIf="emptyPwd" style="color: red;margin-top: 30px; font-size: 20pt;text-align: center; ">Password is required<meta http-equiv="refresh" content="1">
+                    </span>
+                    <div>
+                      <span class="wthree-field" style="margin-top: 10%;">
+                          <button type="submit" class="btn" (click)="onSubmitLogin()" style="width: 8vw;margin-left:120px; margin-top:3vh;">Login</button>
+                      </span>
+                      <span class="wthree-field" >
+                        <button type="submit" class="btn" (click)="onSubmitRegister()" style="background-color: darkgreen;width:8vw; margin-left:120px; margin-top:1vh;" >Register</button>
+                      </span>
+                    </div>  
+                  </form>
+              </div>
+          </div>
+      
+    <!-- </div> -->
+  </section>

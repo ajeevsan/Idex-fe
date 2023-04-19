@@ -1,0 +1,123 @@
+<div class="main_container">
+    <div class="header">
+        <div class="user_container">
+            <img id="logo" src="./assets/images/user-picture.png" alt="" srcset="">
+            <div class="user_title">Hi, User</div>
+        </div>
+        <div class="heading">Visibility Forecast</div>
+        <div class="date_btn_container">
+            <div class="date_time_content">{{currentDate | date:'dd-MMM-yyyy HH:mm:ss'}} &nbsp;&nbsp;</div>
+        </div>
+    </div>
+    <div class="main_section">
+        <div class=" left_section">
+            <div id="" class="station_container">
+                <div class="station_title">Select Station</div>
+                <select name="station" id="select_station">
+                    <option style="font-family: 'Times New Roman', Times, serif;"
+                        *ngFor="let city of cityList; let i=index" [value]="city">
+                        {{cityList[i]}}
+                    </option>
+                </select>
+            </div>
+            <div id="" class="date_container">
+                <mat-form-field style="margin-top: 12px; margin-left: 18px;font-family: 'Times New Roman', Times, serif;">
+                    <input
+                        style="color:black; border-width: 2px; border-color: rgb(19, 0, 70); font-size: 2.5vh;font-family: 'Times New Roman', Times, serif;"
+                        matInput [matDatepicker]="datepicker" placeholder="Select date:" [value]="startDate"
+                        (dateChange)="selectdate($event)">
+                    <mat-datepicker-toggle matSuffix [for]="datepicker"></mat-datepicker-toggle>
+                    <!-- <mat-hint>DD/MM//YYYY</mat-hint> -->
+                    <mat-datepicker maxRange=5 #datepicker [startAt]="startDate"></mat-datepicker>
+                    <mat-date-range-picker  #picker2></mat-date-range-picker>
+                </mat-form-field>
+            </div>
+            <div id="" class="details_container">
+                <div class="detail_title">Real Time Details</div>
+                <div class="realtimeDetailsList">
+                    <li>DDD: {{DDD}}</li>
+                    <li>FF: {{FF}} </li>
+                    <li>FMFM: {{FMFM}} </li>
+                    <li>DB: {{DB}} </li>
+                    <li>DP: {{DP}} </li>
+                    <li>WB: {{WB}} </li>
+                    <li>RH: {{RH}} </li>
+                    <li>QFE: {{QFE}} </li>
+                    <li>QFF: {{QFF}} </li>
+                    <li>RRR: {{RRR}} </li>
+                    <li>MinTemp: {{MinTemp}} </li>
+                    <li>MaxTemp: {{MaxTemp}} </li>
+                </div>
+            </div>
+        </div>
+        <div class=" right_section">
+            <div class="charts_container">
+                <div class="forecast_duration">
+                    <div class="forecast_title">Forecast Duration</div>
+                    <div class="time_interval_container">
+                        <!-- <div class="duration_6hr" id="6hr">{{hourList[0]}}</div> -->
+                        <div class="duration_6hr" id="6hr">6hr</div>
+
+                        <!-- <div class="duration_48hr" id="48hr">{{hourList[1]}}</div> -->
+                        <div class="duration_48hr" id="48hr">48hr</div>
+
+                    </div>
+                </div>
+                <div class="charts_section">
+                    <div class="actualGraph_container">
+                        <div class="actualGraph_title">Predicted and Actual Data for Gorakhpur</div>
+                        <hr>
+                        <hr>
+                        <div id="actual_graph">
+                            <div id="chart1" ></div>
+                        </div>
+                    </div>
+                    <div class="errorGraph_container">
+                        <div class="errorGraph_title">Error Graph for Gorakhpur</div>
+                        <hr>
+                        <hr>
+                        <div id="error_graph">
+                            <div id="chart2" ></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="overall_data_container">
+                <div class="overall_data_title">DATA OVERVIEW
+                    <hr>
+                    <hr>
+                </div>
+
+                <div class="table_container">
+                    <table style=" width:97%;margin-right:0px; margin-left: 0px;" id="excel-table">
+                        <thead class="disable-scrollbars">
+                            <tr style="background-color: rgb(5, 55, 137); color: white;">
+                                <th style="font-size:120%;font-family: 'Times New Roman';width:150px; text-align: center;"
+                                    class="background">Time</th>
+                                <th style="font-size:120%;font-family: 'Times New Roman';width:150px; text-align: center;"
+                                    class="background">Prediction<br> (in mts)</th>
+                                <th style="font-size:120%;font-family: 'Times New Roman';width:150px; text-align: center;"
+                                    class="background">Actual<br>(in mts)</th>
+                                <th style="font-size:120%;font-family: 'Times New Roman';width:150px; text-align: center;"
+                                    class="background">Error<br>(in %)</th>
+                            </tr>
+                        </thead>
+
+                        <tbody>
+                            <tr *ngFor="let h of hLast; index as i "
+                                style="color: black; background-color: white; font-size:23px;font-family:'Times New Roman', Times, serif;text-align: center;">
+                                <td><span>{{hLast[i]}}</span></td>
+                                <td><span>{{pLast[i]}}</span></td>
+                                <td><span>{{aLast[i]}}</span></td>
+                                <td><span>{{eLast[i]}}</span></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="download_btn_container">
+                    <button class="download_btn" (click)="exportexcel()">DOWNLOAD</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

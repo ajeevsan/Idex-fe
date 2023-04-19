@@ -1,0 +1,182 @@
+<html>
+  
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<head>
+<meta name="viewport" content="with=device--width, initial-scale=1.0">
+</head>
+
+<body >
+<section class="home"> 
+    <div style="padding: 30px 30px; background-color: black">
+      <!-- <a class="fa fa-user fa-lg text-white" style="float:left; font-size: 30px; "><a style="font-family: 'Times New Roman', Times, serif"> Hi! User</a> </a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;   -->
+      <a class="text-white" style=" text-align: center; font-size: 40px; font-family: 'Times New Roman', Times, serif;">User Management</a> 
+      <!-- <a class="text-white" style="float:right;font-size: 30px; margin-bottom: 1%; font-family: 'Times New Roman', Times, serif;">currentDate &nbsp;&nbsp; <a class="logout"  style=" cursor: pointer;color: white; font-family: 'Times New Roman', Times, serif;" >Logout</a></a> -->
+      <a class="logout"  style="float: right;font-size: 35px;  cursor: pointer;color: white; font-family: 'Times New Roman', Times, serif;" (click)="logout()">Logout</a>
+    </div>
+
+    <div class="sidebar">
+        <div style="margin-left: 14% ; margin-top: 10%; width:35%;">
+            <button type="button" class="btn" (click)="onDashboard()"  style="color:black; font-weight: bold; background-color:steelblue;  font-family: 'Times New Roman', Times, serif; font-size: 20pt; border-color: black; border-radius: 2pt; width: 250px; height: 70px;" >Dashboard</button>
+        </div>
+        <div style="margin-left: 14% ; margin-top: 10%; width:35%;">
+            <button type="button" class="btn" (click)="requestsPage()"  style="color:black; font-weight: bold;  background-color:steelblue; font-family: 'Times New Roman', Times, serif;  font-size: 20pt; border-color: black; border-radius: 2pt; width: 250px; height: 70px;" >User Requests</button>
+        </div>
+        <div style="margin-left: 14% ; margin-top: 10%; width:35%;">
+            <button type="button" class="btn" (click)="activePage()"  style="color:black; font-weight: bold; background-color:steelblue; font-family: 'Times New Roman', Times, serif;  font-size: 20pt; border-color: black; border-radius: 2pt; width: 250px; height: 70px;" >Active Users</button>
+        </div>
+        <div style="margin-left: 14% ; margin-top: 10%; width:35%;">
+            <button type="button" class="btn" (click)="inactivePage()"  style="color:black; font-weight: bold; background-color:steelblue; font-family: 'Times New Roman', Times, serif;  font-size: 20pt; border-color: black; border-radius: 2pt; width: 250px; height: 70px;" >Disabled Users</button>
+        </div>
+    </div>
+
+    <div  >
+        
+        <div *ngIf="requestFlag==true && activeFlag==false && inactiveFlag==false" class="text-white" style="overflow: auto; width: 2000px; height: 100%; margin-left: 18%; ">
+
+            <div  style=" font-family: 'Times New Roman', Times, serif; font-size:35px; margin-top: 1%;color: white; ">{{display_name}}</div> 
+             
+            <div class="table-wrapper">
+            <table  style=" width:2000px; height: 900px; margin-top: 3%; "  id="excel-table">   
+                <thead  class="disable-scrollbars" style="height: 7%;">
+                      <tr style="background-color: rgb(5, 55, 137); ">
+                        <th style="vertical-align: middle; font-size:30px;font-family: 'Times New Roman';width:150px; text-align: center;" class="background">ID</th>
+                        <th style="vertical-align: middle; font-size:30px;font-family: 'Times New Roman';width:150px; text-align: center;" class="background">Registration date</th>
+                        <th style="vertical-align: middle; font-size:30px;font-family: 'Times New Roman';width:150px; text-align: center;" class="background">Name</th>
+                        <th style="vertical-align: middle; font-size:30px;font-family: 'Times New Roman';width:150px; text-align: center;" class="background">Email</th>
+                        <th style="vertical-align: middle; font-size:30px;font-family: 'Times New Roman';width:150px; text-align: center;" class="background">Role</th>
+                        <th style="vertical-align: middle; font-size:30px;font-family: 'Times New Roman';width:150px; text-align: center;" class="background">Password</th>
+                        <th style="vertical-align: middle; font-size:30px;font-family: 'Times New Roman';width:150px; text-align: center;" class="background">Approval Status</th>
+                        <th style="vertical-align: middle; font-size:30px;font-family: 'Times New Roman';width:150px; text-align: center;" class="background">Actions</th>
+                      </tr>
+                    </thead>
+            
+                    <tbody>
+                      <tr *ngFor="let user of displayUsers; index as i "  style="color:white;  font-size:23px;font-family:'Times New Roman', Times, serif;text-align: center;">
+                        <td style="vertical-align: middle; font-size:30px;font-family: 'Times New Roman';width:150px; text-align: center;"><span>{{requestingUserInfo[i][0]}}</span></td>
+                        <td style="vertical-align: middle; font-size:30px;font-family: 'Times New Roman';width:150px; text-align: center;"><span>{{requestingUserInfo[i][1] | date: 'dd-MM-yyyy'}}</span></td>
+                        <td style="vertical-align: middle; font-size:30px;font-family: 'Times New Roman';width:150px; text-align: center;"><span>{{requestingUserInfo[i][2]}}</span></td>
+                        <td style="vertical-align: middle; font-size:30px;font-family: 'Times New Roman';width:150px; text-align: center;"><span>{{requestingUserInfo[i][3]}}</span></td>
+                        <td style="vertical-align: middle; font-size:30px;font-family: 'Times New Roman';width:150px; text-align: center;"><span>{{requestingUserInfo[i][4]}}</span></td>
+                        <td style="vertical-align: middle; font-size:30px;font-family: 'Times New Roman';width:150px; text-align: center;"><span>{{requestingUserInfo[i][5]}}</span></td>
+                        <td style="vertical-align: middle; font-size:30px;font-family: 'Times New Roman';width:150px; text-align: center;"><span>{{requestingUserInfo[i][6]}}</span></td>
+                        <td style="vertical-align: middle; font-size:30px;font-family: 'Times New Roman';width:150px; text-align: center;"><span> 
+                            <a mat-icon-button (click)="addAsUser($event,  requestingUserInfo[i][2])"><mat-icon>done</mat-icon></a>&nbsp;
+                            <a mat-icon-button (click)="disableUser($event,  requestingUserInfo[i][2])"><mat-icon>clear</mat-icon></a>&nbsp;
+                            <a mat-icon-button (click)="deleteUser($event, requestingUserInfo[i][2])"><mat-icon>delete</mat-icon></a>
+                        </span></td>
+                      </tr>
+                    </tbody>
+
+              </table>
+
+            </div>
+            <br><br><br><br><br><br><br>
+            
+            <!-- <div class="wthree-field" style="position: sticky; bottom: 0; margin-left: 0%; margin-top: -0.3%;" >
+              <button type="submit" class="btn" style ="cursor: pointer; width: 800px; background-color: rgb(5, 55, 137);" (click)="exportexcel()">Download</button>
+            </div>  -->
+          </div>
+
+          <!-- --------------------------------------------------------------- -->
+          <div *ngIf="requestFlag==false && activeFlag==true && inactiveFlag==false" class="text-white" style="overflow: auto; width: 2000px; height: 100%; margin-left: 18%; ">
+
+            <div  style=" font-family: 'Times New Roman', Times, serif; font-size:35px; margin-top: 1%;color: white; ">{{display_name}}</div> 
+             
+            <div class="table-wrapper">
+            <table  style=" width:2000px; height: 900px; margin-top: 3%; "  id="excel-table">   
+                <thead  class="disable-scrollbars" style="height: 7%;">
+                      <tr style="background-color: rgb(5, 55, 137); ">
+                        <th style="vertical-align: middle; font-size:30px;font-family: 'Times New Roman';width:150px; text-align: center;" class="background">ID</th>
+                        <th style="vertical-align: middle; font-size:30px;font-family: 'Times New Roman';width:150px; text-align: center;" class="background">Registration date</th>
+                        <th style="vertical-align: middle; font-size:30px;font-family: 'Times New Roman';width:150px; text-align: center;" class="background">Name</th>
+                        <th style="vertical-align: middle; font-size:30px;font-family: 'Times New Roman';width:150px; text-align: center;" class="background">Email</th>
+                        <th style="vertical-align: middle; font-size:30px;font-family: 'Times New Roman';width:150px; text-align: center;" class="background">Role</th>
+                        <th style="vertical-align: middle; font-size:30px;font-family: 'Times New Roman';width:150px; text-align: center;" class="background">Password</th>
+                        <th style="vertical-align: middle; font-size:30px;font-family: 'Times New Roman';width:150px; text-align: center;" class="background">Approval Status</th>
+                        <th style="vertical-align: middle; font-size:30px;font-family: 'Times New Roman';width:150px; text-align: center;" class="background">Actions</th>
+                      </tr>
+                    </thead>
+            
+                    <tbody>
+                      <tr *ngFor="let user of displayUsers; index as i "  style="color:white;  font-size:23px;font-family:'Times New Roman', Times, serif;text-align: center;">
+                        <td style="vertical-align: middle; font-size:30px;font-family: 'Times New Roman';width:150px; text-align: center;"><span>{{activeUserInfo[i][0]}}</span></td>
+                        <td style="vertical-align: middle; font-size:30px;font-family: 'Times New Roman';width:150px; text-align: center;"><span>{{activeUserInfo[i][1] | date: 'dd-MM-yyyy'}}</span></td>
+                        <td style="vertical-align: middle; font-size:30px;font-family: 'Times New Roman';width:150px; text-align: center;"><span>{{activeUserInfo[i][2]}}</span></td>
+                        <td style="vertical-align: middle; font-size:30px;font-family: 'Times New Roman';width:150px; text-align: center;"><span>{{activeUserInfo[i][3]}}</span></td>
+                        <td style="vertical-align: middle; font-size:30px;font-family: 'Times New Roman';width:150px; text-align: center;"><span>{{activeUserInfo[i][4]}}</span></td>
+                        <td style="vertical-align: middle; font-size:30px;font-family: 'Times New Roman';width:150px; text-align: center;"><span>{{activeUserInfo[i][5]}}</span></td>
+                        <td style="vertical-align: middle; font-size:30px;font-family: 'Times New Roman';width:150px; text-align: center;"><span>{{activeUserInfo[i][6]}}</span></td>
+                        <td style="vertical-align: middle; font-size:30px;font-family: 'Times New Roman';width:150px; text-align: center;"><span> 
+                            <!-- <a mat-icon-button (click)="addAsUser($event,  activeUserInfo[i][2])"><mat-icon>done</mat-icon></a>&nbsp; -->
+                            <a mat-icon-button (click)="disableUser($event,  activeUserInfo[i][2])"><mat-icon>clear</mat-icon></a>&nbsp;
+                            <a mat-icon-button (click)="deleteUser($event, activeUserInfo[i][2])"><mat-icon>delete</mat-icon></a>
+                          </span></td>
+                          </tr>
+                    </tbody>
+
+              </table>
+
+            </div>
+            <br><br><br><br><br><br><br>
+            
+            <!-- <div class="wthree-field" style="position: sticky; bottom: 0; margin-left: 0%; margin-top: -0.3%;" >
+              <button type="submit" class="btn" style ="cursor: pointer; width: 800px; background-color: rgb(5, 55, 137);" (click)="exportexcel()">Download</button>
+            </div>  -->
+          </div>
+          <!-- --------------------------------------------------------------------- -->
+          <div *ngIf="requestFlag==false && activeFlag==false && inactiveFlag==true" class="text-white" style="overflow: auto; width: 2000px; height: 100%; margin-left: 18%; ">
+
+            <div  style=" font-family: 'Times New Roman', Times, serif; font-size:35px; margin-top: 1%;color: white; ">{{display_name}}</div> 
+             
+            <div class="table-wrapper">
+            <table  style=" width:2000px; height: 900px; margin-top: 3%; "  id="excel-table">   
+                <thead  class="disable-scrollbars" style="height: 7%;">
+                      <tr style="background-color: rgb(5, 55, 137); ">
+                        <th style="vertical-align: middle; font-size:30px;font-family: 'Times New Roman';width:150px; text-align: center;" class="background">ID</th>
+                        <th style="vertical-align: middle; font-size:30px;font-family: 'Times New Roman';width:150px; text-align: center;" class="background">Registration date</th>
+                        <th style="vertical-align: middle; font-size:30px;font-family: 'Times New Roman';width:150px; text-align: center;" class="background">Name</th>
+                        <th style="vertical-align: middle; font-size:30px;font-family: 'Times New Roman';width:150px; text-align: center;" class="background">Email</th>
+                        <th style="vertical-align: middle; font-size:30px;font-family: 'Times New Roman';width:150px; text-align: center;" class="background">Role</th>
+                        <th style="vertical-align: middle; font-size:30px;font-family: 'Times New Roman';width:150px; text-align: center;" class="background">Password</th>
+                        <th style="vertical-align: middle; font-size:30px;font-family: 'Times New Roman';width:150px; text-align: center;" class="background">Approval Status</th>
+                        <th style="vertical-align: middle; font-size:30px;font-family: 'Times New Roman';width:150px; text-align: center;" class="background">Actions</th>
+                      </tr>
+                    </thead>
+            
+                    <tbody>
+                      <tr *ngFor="let user of displayUsers; index as i "  style="color:white;  font-size:23px;font-family:'Times New Roman', Times, serif;text-align: center;">
+                        <td style="vertical-align: middle; font-size:30px;font-family: 'Times New Roman';width:150px; text-align: center;"><span>{{inactiveUserInfo[i][0]}}</span></td>
+                        <td style="vertical-align: middle; font-size:30px;font-family: 'Times New Roman';width:150px; text-align: center;"><span>{{inactiveUserInfo[i][1] | date: 'dd-MM-yyyy'}}</span></td>
+                        <td style="vertical-align: middle; font-size:30px;font-family: 'Times New Roman';width:150px; text-align: center;"><span>{{inactiveUserInfo[i][2]}}</span></td>
+                        <td style="vertical-align: middle; font-size:30px;font-family: 'Times New Roman';width:150px; text-align: center;"><span>{{inactiveUserInfo[i][3]}}</span></td>
+                        <td style="vertical-align: middle; font-size:30px;font-family: 'Times New Roman';width:150px; text-align: center;"><span>{{inactiveUserInfo[i][4]}}</span></td>
+                        <td style="vertical-align: middle; font-size:30px;font-family: 'Times New Roman';width:150px; text-align: center;"><span>{{inactiveUserInfo[i][5]}}</span></td>
+                        <td style="vertical-align: middle; font-size:30px;font-family: 'Times New Roman';width:150px; text-align: center;"><span>{{inactiveUserInfo[i][6]}}</span></td>
+                        <td style="vertical-align: middle; font-size:30px;font-family: 'Times New Roman';width:150px; text-align: center;"><span> 
+                            <a mat-icon-button (click)="addAsUser($event,  inactiveUserInfo[i][2])"><mat-icon>done</mat-icon></a>&nbsp;
+                            <!-- <a mat-icon-button (click)="disableUser($event,  inactiveUserInfo[i][2])"><mat-icon>clear</mat-icon></a>&nbsp; -->
+                            <a mat-icon-button (click)="deleteUser($event, inactiveUserInfo[i][2])"><mat-icon>delete</mat-icon></a>
+                        </span></td>
+                      </tr>
+                    </tbody>
+
+              </table>
+
+            </div>
+            <br><br><br><br><br><br><br>
+            
+            <!-- <div class="wthree-field" style="position: sticky; bottom: 0; margin-left: 0%; margin-top: -0.3%;" >
+              <button type="submit" class="btn" style ="cursor: pointer; width: 800px; background-color: rgb(5, 55, 137);" (click)="exportexcel()">Download</button>
+            </div>  -->
+          </div>
+
+  
+    </div>
+      
+    </section>
+  </body>
+  </html>
+    
+  
+  
+  

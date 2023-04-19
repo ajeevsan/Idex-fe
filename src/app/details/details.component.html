@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Details</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/1.6.2/tailwind.min.css" />
+</head>
+
+<body>
+  <div class="main_wrapper">
+    <div class="header">
+      <div class="menu_container">
+        <button mat-button [matMenuTriggerFor]="menu" style="border-width: 0px; background-color: transparent;">
+           <img src="/assets/menu.png" alt="Menu" id="menu-icon">
+        </button>
+        <mat-menu #menu="matMenu"  style="padding: 5%;">
+          <button mat-menu-item id="dashboard" [routerLink]="['/dashboard']">Dashboard</button>
+          <button mat-menu-item id="detailSection" [routerLink]="['/details']">Details Section</button>
+        </mat-menu>
+      </div>
+      <div class="user_container">
+        <img id="logo" src="./assets/images/Puzzle.png" style="height: 65px; width: auto;" alt="" srcset="">
+        <div class="user_title">Hi, User</div>
+      </div>
+      <div class="heading">Visibility Forecast</div>
+      <div class="date_btn_container">
+        <!-- <div class="date_time_content">{{currentDate | date:'dd-MMM-yyyy HH:mm:ss'}} &nbsp;&nbsp;</div> -->
+      </div>
+    </div>
+    <div class="top_wrapper">
+      <div class="left_section">
+        <div class="date_container">
+          <div class="date_title">Select Date</div>
+          <mat-form-field appearance="fill">
+            <mat-label>Enter a date range</mat-label>
+            <mat-date-range-input [rangePicker]="picker" [formGroup]="dateRange">
+              <input matStartDate formControlName="start" placeholder="Start date" min="31-05-1999">
+              <input matEndDate formControlName="end" placeholder="End date" max="today">
+            </mat-date-range-input>
+            <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-date-range-picker #picker></mat-date-range-picker>
+          </mat-form-field>
+        </div>
+        <!-- <div>
+          <h2>
+            start: {{dateRange.value.start| date}}
+            end: {{dateRange.value.end | date}}
+          </h2>
+        </div> -->
+        <div class="data_summary_container">
+          <div class="date_header">
+            <div class="data_title">Data Summary </div>
+            <div class="select_option">
+              <select name="type" id="data_type">
+                <option value="gorakhpur">Most Accurate</option>
+                <option value="gorakhpur">Average</option>
+                <option value="chandigarh">Least Accurate</option>
+              </select>
+            </div>
+          </div>
+          <div class="detail_data">
+            <div class="data_1">
+              <div class="actualValue_title">Actual Value</div>
+              <div class="actual_value">980 m</div>
+            </div>
+            <div class="data_2">
+              <div class="actualValue_title">Predicted Value</div>
+              <div class="actual_value">1000 m</div>
+            </div>
+            <div class="data_3">
+              <div class="actualValue_title">Error</div>
+              <div class="actual_value">20 m</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="right_section">
+        <div class="sub_header">
+          <div class="graph_title">
+            Actual VS Predicted Graph for {{currentSelectedCity}}
+          </div>
+          <div class="option_section">
+            <div class="station_section">
+              <div class="station_title">Select Station:</div>
+              <select name="station" id="select_station" (change)="selectCity($event.target)">
+                <option style="font-family: 'Times New Roman', Times, serif;"
+                  *ngFor="let city of dummyCityList; let i=index" [value]="city">
+                  {{dummyCityList[i]}}
+                </option>
+              </select>
+            </div>
+            <div class="forecast_duration">
+              <div class="forecast_title">Forecast Duration:</div>
+              <div class="time_interval_container">
+                <!-- <div class="duration_6hr" id="6hr">{{hourList[0]}}</div> -->
+                <div class="duration_6hr" id="6hr">6hr</div>
+                <!-- <div class="duration_48hr" id="48hr">{{hourList[1]}}</div> -->
+                <div class="duration_48hr" id="48hr">48hr</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="graph_wrapper">
+          <div class="actual_graph">
+            <div id="chart1">
+              <div echarts [options]="predicted_graph" style=" height: 270px;"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="footer_wrapper">
+      <div class="bottom_left_section">
+        <div class="averageGraph_title">Data Overview</div>
+        <table>
+          <thead>
+            <tr>
+              <th rowspan="2"><strong>Sno.</strong></th>
+              <th rowspan="2"><strong>Temp(in °C)</strong></th>
+              <th rowspan="2"><strong>Time</strong></th>
+              <th rowspan="2"><strong>Cloud Type</strong></th>
+              <th rowspan="2"><strong>Visibility</strong></th>
+            </tr>
+          </thead>
+          <tbody>
+
+            <tr>
+              <td>1</td>
+              <td>9</td>
+              <td>7:30</td>
+              <td>5</td>
+              <td>Moderate</td>
+            </tr>
+            <tr>
+              <td>2</td>
+              <td>10</td>
+              <td>8:30</td>
+              <td>5</td>
+              <td>Moderate</td>
+            </tr>
+            <tr>
+              <td>3</td>
+              <td>12</td>
+              <td>9:30</td>
+              <td>5</td>
+              <td>Moderate</td>
+            </tr>
+            <tr>
+              <td>4</td>
+              <td>15</td>
+              <td>10:30</td>
+              <td>5</td>
+              <td>Moderate</td>
+            </tr>
+            <tr>
+              <td>5</td>
+              <td>17</td>
+              <td>11:30</td>
+              <td>5</td>
+              <td>Moderate</td>
+            </tr>
+            <tr>
+              <td>6</td>
+              <td>19</td>
+              <td>12:30</td>
+              <td>4</td>
+              <td>Moderate</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="bottom_right_section">
+        <div class="averageGraph_title">Average Graph for {{currentSelectedCity}}</div>
+        <div class="error_title">
+          <div echarts [options]="average_graph" style=" height: 270px;"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+
+</html>
