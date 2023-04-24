@@ -26,6 +26,9 @@ import { LocationComponent } from './location/location.component'
 import { DetailsComponent } from './details/details.component';
 import { NgxEchartsModule } from "ngx-echarts";
 import { Dashboardv2Component } from './dashboardv2/dashboardv2.component';
+import { NgMultiSelectDropDownModule } from "ng-multiselect-dropdown";
+
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -43,7 +46,6 @@ import { Dashboardv2Component } from './dashboardv2/dashboardv2.component';
     DetailsComponent, Dashboardv2Component  
   ],
   imports: [
-    
     BrowserModule,
     AppRoutingModule,
     FormsModule,

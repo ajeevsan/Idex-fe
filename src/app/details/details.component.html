@@ -34,15 +34,19 @@
       <div class="left_section">
         <div class="date_container">
           <div class="date_title">Select Date</div>
-          <mat-form-field appearance="fill">
+          <mat-form-field appearance="fill" >
             <mat-label>Enter a date range</mat-label>
-            <mat-date-range-input [rangePicker]="picker" [formGroup]="dateRange">
+            <mat-date-range-input [rangePicker]="picker" [formGroup]="dateRange" >
               <input matStartDate formControlName="start" placeholder="Start date" min="31-05-1999">
               <input matEndDate formControlName="end" placeholder="End date" max="today">
             </mat-date-range-input>
             <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
             <mat-date-range-picker #picker></mat-date-range-picker>
           </mat-form-field>
+          <!-- <input id="datepicker" class="input-datepicker"> -->
+          <div id="searchButton" (click)="selectdate($event)">
+            Search 
+          </div>
         </div>
         <!-- <div>
           <h2>

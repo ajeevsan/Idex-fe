@@ -207,34 +207,8 @@ public td_formatted:any;
       
     console.log("Selected date  new^^^^^^^^^^^^^^^^^^", this.selectedDate)
     this.sendToBackend(this.selectedDate)
-    // this.service.getBackendData(this.stname, this.selectedDate, this.fchr).subscribe(calledData => 
-    //   {
-    //     this.catchCall= calledData
-    //     this.found = 0
-    //     this.getInitialPredicrions();
-    //     //this.greet();
-    //   })
   }
-  // selectdate(event: any)
-  // {
-  //   this.input_date = event.target.value;
-  //   console.log("Selected date old^^^^^^^^^^^^^^^^^^", this.selectedDate, typeof(this.selectedDate))
-  //   // let newDate= new Date(this.selectedDate);
-  //   // newDate.setMinutes(newDate.getDate() + 1);
-  //   // this.selectedDate = newDate
-  //   // var offsetMs = this.selectedDate.getTimezoneOffset() * 60000;
-  //   // this.selectedDate =  new Date(this.selectedDate.getTime() - offsetMs);
-      
-  //   console.log("Selected date  new^^^^^^^^^^^^^^^^^^", this.input_date)
 
-  //   this.service.getBackendData(this.stname, this.input_date, this.fchr).subscribe(calledData => 
-  //     {
-  //       this.catchCall= calledData
-  //       this.found = 0
-  //       this.getInitialPredicrions();
-  //       //this.greet();
-  //     })
-  // }
   forecastHour(event:any)
   { 
       console.log("Inside forecasthour $$$$$$$$$$$$$$$")

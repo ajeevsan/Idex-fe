@@ -1,6 +1,8 @@
 import { Component, OnInit, Input } from '@angular/core';
 // import { GetCurrentLocationService } from '../get-current-location.service';
+import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
+import { SharedDataService } from '../shared-data.service';
 
 @Component({
   selector: 'app-location',
@@ -8,18 +10,22 @@ import { Router } from '@angular/router';
   styleUrls: ['./location.component.css'],
 })
 export class LocationComponent implements OnInit {
-  selectedCity: any;
+  selectCity: any;
 
-  constructor(private router: Router) {}
+  constructor(private router: Router, public shareData : SharedDataService) {}
 
   onlyOnceLocation(event: any) {
     console.log('We are inside the Select Location Function');
-    let data = event.target.parentElement.innerText;
-    this.router.navigate(['/dashboard', data]);
+    this.selectCity = event.target.parentElement.innerText;
+    console.log(this.selectCity);
+    this.shareData.updateSelectedData(this.selectCity)
+    this.router.navigate(['/dashboard']);
   }
 
-
-
+  get selectedCity(){
+    return this.shareData.selectedCity;
+  }
+  
   ngOnInit(): void {
   }
 }

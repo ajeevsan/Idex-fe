@@ -2,13 +2,14 @@
     <div class="header">
         <div class="menu_container">
             <button mat-button [matMenuTriggerFor]="menu" style="border-width: 0px; background-color: transparent;">
-               <img src="/assets/menu.png" alt="Menu" id="menu-icon">
+                <img src="/assets/menu.png" alt="Menu" id="menu-icon">
             </button>
             <mat-menu #menu="matMenu" id="menu_list" style="padding: 5%;">
-              <button mat-menu-item id="dashboard" [routerLink]="['/dashboard']">Dashboard</button>
-              <button mat-menu-item id="detailSection" [routerLink]="['/details']">Details Section</button>
+                <!-- <button mat-menu-item id="home" [routerLink]="['']">Home</button> -->
+                <button mat-menu-item id="dashboard" [routerLink]="['/dashboard']">Dashboard</button>
+                <button mat-menu-item id="detailSection" [routerLink]="['/details']">Details Section</button>
             </mat-menu>
-          </div>
+        </div>
         <div class="user_container">
             <img id="logo" src="./assets/images/Puzzle.png" style="height: 65px; width: auto;" alt="" srcset="">
             <div class="user_title">Hi, User</div>
@@ -22,12 +23,16 @@
         <div class=" left_section">
             <div id="" class="station_container">
                 <div class="station_title">Select Station</div>
-                <select name="station" id="select_station" (change)="stationName($event)">
+                <select name="station" id="select_station" [(ngModel)]="currentSelectedCity"
+                    (change)="stationName($event)">
                     <!-- <option style="font-family: 'Times New Roman', Times, serif;"
                         value={{_location.currentStation}}
                         *ngFor="let city of cityList; let i=index" [value]="currentSelectedCity">
                         {{cityList[i]}}
                     </option> -->
+                    <!-- <option style="font-family: 'Times New Roman', Times, serif;" *ngFor="let city of cityList; let i=index" [ngValue]="selectedCity">
+                        {{cityList[i]}}
+                      </option> -->
                     <option value="Chandigarh">Chandigarh</option>
                     <option value="Gorakhpur">Gorakhpur</option>
                     <option value="Hindan">Hindan</option>
@@ -35,24 +40,47 @@
                 </select>
             </div>
             <div id="" class="date_container">
-                <mat-form-field appearance="fill" style="margin-top: 8%;">
+                <!-- <mat-form-field appearance="fill" style="margin-top: 8%;">
                     <mat-label>Pick a Date</mat-label>
-                    <input matInput [matDatepicker]="picker1" [max] = "today" [formControl]="date">
+                    <input matInput [matDatepicker]="picker1" [formControl]="date">
                     <mat-datepicker-toggle matIconSuffix [for]="picker1"></mat-datepicker-toggle>
                     <mat-datepicker #picker1></mat-datepicker>
-                </mat-form-field>
-
+                </mat-form-field> -->
+                <div id="status_header">
+                    <div id="status">
+                        <div id="text">Status</div>
+                        <div id="status_options">
+                            <select name="status" id="status_options" (change)="selectStatusOptions($event)" >
+                                <option value="max">Max Error</option>
+                                <option value="min">Least Error</option>
+                                <option value=""></option>
+                            </select>
+                        </div>
+                    </div>
+                    <div id="cities_body">
+                        <ol id="cities_status">
+                            <li class="cityStatusText">1. Hindan</li>
+                            <li class="cityStatusText">2. Chandigarh</li>
+                            <li class="cityStatusText">3. Chandigarh</li>
+                            <li class="cityStatusText">4. Chandigarh</li>
+                        </ol>
+                    </div>
+                </div>
             </div>
             <div class="forecast_duration">
                 <div class="forecast_title">Forecast Duration</div>
-                <div class="time_interval_container" >
+                <div class="time_interval_container">
                     <!-- <div class="duration_6hr" id="6hr">{{hourList[0]}}</div> -->
-                    <div class="duration_6hr" *ngIf="flag_6hr" id="6hr" (click)="forecastHour('6hr')" style="background-image: linear-gradient(-180deg, #37AEE2 0%, #1E96C8 100%);" >6hr</div>
-                    <div class="duration_6hr" id="6hr" *ngIf="!flag_6hr" style="background-image: linear-gradient(-180deg, #295061 0%, #4a839b 100%);" >6hr</div>
+                    <div class="duration_6hr" *ngIf="flag_6hr" id="6hr" (click)="forecastHour('6hr')"
+                        style="background-image: linear-gradient(-180deg, #37AEE2 0%, #1E96C8 100%);">6hr</div>
+                    <div class="duration_6hr" id="6hr" *ngIf="!flag_6hr"
+                        style="background-image: linear-gradient(-180deg, #295061 0%, #4a839b 100%);">6hr</div>
 
                     <!-- <div class="duration_48hr" id="48hr">{{hourList[1]}}</div> -->
-                    <div class="duration_48hr" id="48hr" *ngIf="flag_48hr" (click)="forecastHour('48hr')" style="background-image: linear-gradient(-180deg, #37AEE2 0%, #1E96C8 100%);" >48hr</div>
-                    <div class="duration_48hr"  *ngIf="!flag_48hr" id="48hr" style="background-image: linear-gradient(-180deg, #295061 0%, #4a839b 100%);" >48hr</div>
+                    <div class="duration_48hr" id="48hr" *ngIf="flag_48hr" (click)="forecastHour('48hr')"
+                        style="background-image: linear-gradient(-180deg, #37AEE2 0%, #1E96C8 100%);">48hr</div>
+                    <div class="duration_48hr" *ngIf="!flag_48hr" id="48hr"
+                        style="background-image: linear-gradient(-180deg, #295061 0%, #4a839b 100%);">48hr</div>
                 </div>
             </div>
             <div id="" class="details_container">
@@ -129,7 +157,7 @@
                         <hr>
                         <hr>
                         <div id="actual_graph">
-                            <div id="pipe" style="height: 300px; margin-top: 10px;" ></div>
+                            <div id="pipe" style="height: 300px; margin-top: 10px;"></div>
                         </div>
                     </div>
                     <div class="detail_error_graph">

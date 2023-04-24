@@ -1,6 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import * as echarts from 'echarts';
 import {FormControl, FormGroup} from '@angular/forms';
+import { DetailsDataService } from '../service/details-data.service';
+import { HttpClient } from '@angular/common/http';
+import { CitylistService } from '../citylist.service';
+
+
 
 @Component({
   selector: 'app-details',
@@ -8,13 +13,23 @@ import {FormControl, FormGroup} from '@angular/forms';
   styleUrls: ['./details.component.css']
 })
 
+
+
 export class DetailsComponent implements OnInit {
+
+
+  constructor(public detailsDataService: DetailsDataService, public http: HttpClient, public service2: CitylistService) {
+  
+  }
 
   //Daterange
   dateRange = new FormGroup({
     start: new FormControl(),
     end: new FormControl()
   });
+
+  startDate: any
+  endDate: any
 
 
   today  = new Date()
@@ -207,185 +222,23 @@ average_graph :echarts.EChartsOption = {
           }
         },
       ]
-      // color: this.colors,
-  
-      // tooltip: {
-      //   trigger: 'none',
-      //   axisPointer: {
-      //     type: 'cross'
-      //   }
-      // },
-      // legend: {},
-      // grid: {
-      //   top: 70,
-      //   bottom: 50
-      // },
-      // xAxis: [
-      //   {
-      //     type: 'category',
-      //     axisTick: {
-      //       alignWithLabel: true
-      //     },
-      //     axisLine: {
-      //       onZero: false,
-      //       lineStyle: {
-      //         color: this.colors[1]
-      //       }
-      //     },
-      //     axisPointer: {
-      //       label: {
-      //         formatter: function (params: any) {
-      //           return (
-      //             'Predicted Value ' +
-      //             params.value +
-      //             (params.seriesData.length ? '：' + params.seriesData[0].data : '')
-      //           );
-      //         }
-      //       }
-      //     },
-    
-      //     // prettier-ignore
-      //     data: ['01:00','02:00','03:00','04:00','05:00','06:00','07:00','08:00','08:00','9:00','10:00','11:00']
-      //   },
-      //   {
-      //     type: 'category',
-      //     axisTick: {
-      //       alignWithLabel: true
-      //     },
-      //     axisLine: {
-      //       onZero: false,
-      //       lineStyle: {
-      //         color: this.colors[0]
-      //       }
-      //     },
-      //     axisPointer: {
-      //       label: {
-      //         formatter: function (params: any) {
-      //           return (
-      //             'Actual Value  ' +
-      //             params.value +
-      //             (params.seriesData.length ? '：' + params.seriesData[0].data : '')
-      //           );
-      //         }
-      //       }
-      //     },
-    
-      //     // prettier-ignore
-      //     data: ['01:00','02:00','03:00','04:00','05:00','06:00','07:00','08:00','08:00','9:00','10:00','11:00']
-      //   }
-      // ],
-      // yAxis: [
-      //   {
-      //     type: 'value'
-      //   }
-      // ],
-      // series: [
-      //   {
-      //     name: 'Actual Value',
-      //     type: 'line',
-      //     xAxisIndex: 1,
-      //     smooth: true,
-      //     emphasis: {
-      //       focus: 'series'
-      //     },
-      //     data: this.dummyActualChartData
-      //   },
-      //   {
-      //     name: 'Predicted Value',
-      //     type: 'line',
-      //     smooth: true,
-      //     emphasis: {
-      //       focus: 'series'
-      //     },
-      //     data: this.dummyPredictedChartData
-      //   }
-      // ]
-      // // !.....Graph shows...... Max Min - Avg ............
-      // title: {
-      //   text: ' '
-      // },
-      // tooltip: {
-      //   trigger: 'axis'
-      // },
-      // legend: {},
-      // toolbox: {
-      //   show: true,
-      //   feature: {
-      //     dataZoom: {
-      //       yAxisIndex: 'none'
-      //     },
-      //     dataView: { readOnly: false },
-      //     magicType: { type: ['line', 'bar'] },
-      //     restore: {},
-      //     saveAsImage: {}
-      //   }
-      // },
-      // xAxis: {
-      //   type: 'category',
-      //   boundaryGap: false,
-      //   data: ['01:00','02:00','03:00','04:00','05:00','06:00','07:00','08:00','08:00','9:00','10:00','11:00']
-      // },
-      // yAxis: {
-      //   type: 'value',
-      //   min:600,
-      //   max:1200,
-      //   axisLabel: {
-      //     formatter: '{value} m'
-      //   }
-      // },
-      // series: [
-      //   {
-      //     name: 'Actual',
-      //     type: 'line',
-      //     data:[1000,1000,1000,900,800,800,800,920,1000,980,1000,1100,1029] ,
-      //     markPoint: {
-      //       data: [
-      //         { type: 'max', name: 'Max' },
-      //         { type: 'min', name: 'Min' }
-      //       ]
-      //     },
-      //     markLine: {
-      //       data: [{ type: 'average', name: 'Avg' }]
-      //     }
-      //   },
-      //   {
-      //     name: 'Predicted',
-      //     type: 'line',
-      //     data: [980,950,931,864,781,764,785,795,840,895,940,934,900],
-      //     markPoint: {
-      //       data: [{ name: '', value: -2, xAxis: 1, yAxis: -1.5 }]
-      //     },
-      //     markLine: {
-      //       data: [
-      //         { type: 'average', name: 'Avg' },
-      //         [
-      //           {
-      //             symbol: 'none',
-      //             x: '90%',
-      //             yAxis: 'max'
-      //           },
-      //           {
-      //             symbol: 'circle',
-      //             label: {
-      //               position: 'start',
-      //               formatter: 'Max'
-      //             },
-      //             type: 'max',
-      //             name: ''
-      //           }
-      //         ]
-      //       ]
-      //     }
-      //   }
-      // ]
     };
-  
-  constructor() {
-  
-   }
 
   ngOnInit(): void {
   }
+  
+
+  selectdate(event:any){
+    
+    let arr = [this.dateRange.value.start, this.dateRange.value.end]
+    
+    this.http.post('http://127.0.0.1:5000//searchData', { "dateArray": arr}).subscribe((data:any) => {
+      console.log(data)      
+    })
+  }
 
 
+
+
+  
 }
